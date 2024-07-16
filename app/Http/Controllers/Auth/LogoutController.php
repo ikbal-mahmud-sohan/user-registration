@@ -14,7 +14,7 @@ class LogoutController extends Controller
         $user = Auth::user();
         if ($user) {
             $user->tokens()->delete(); // Assuming you are using Laravel Sanctum or Passport
-            return response()->json(['message' => 'Logged out successfully'], 200);
+            return redirect('/login')->with('message', 'Logged out successfully');
         } else {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
